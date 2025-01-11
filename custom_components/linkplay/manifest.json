@@ -1,16 +1,17 @@
 {
-  "domain": "linkplay",
-  "name": "Linkplay",
+  "domain": "linkplay2",
+  "name": "Linkplay2",
   "version":"3.2.3",
-  "documentation": "https://github.com/nagyrobi/home-assistant-custom-components-linkplay",
-  "issue_tracker": "https://github.com/nagyrobi/home-assistant-custom-components-linkplay/issues",
+  "documentation": "https://github.com/ExPeacer/home-assistant-custom-components-linkplay2",
+  "issue_tracker": "https://github.com/ExPeacer/home-assistant-custom-components-linkplay2/issues",
   "after_dependencies": ["http", "tts", "media_source"],
   "config_flow": false,
   "iot_class": "local_polling",
   "codeowners": [
     "@nicjo814",
     "@limych",
-    "@nagyrobi"
+    "@nagyrobi",
+    "@ExPeacer"
   ],
   "requirements": [
     "async-upnp-client>=0.27",

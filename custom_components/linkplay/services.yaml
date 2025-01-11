@@ -9,7 +9,7 @@ join:
       required: true
       selector:
         entity:
-          integration: linkplay
+          integration: linkplay2
     entity_id:
       name: Slave Entity ID
       description: Entity ID(s) of the player(s) that will connect to the master. Switch to YAML mode to manually add more, separated by comma.
@@ -17,7 +17,7 @@ join:
       required: true
       selector:
         entity:
-          integration: linkplay
+          integration: linkplay2
 
 unjoin:
   name: Unjoin
@@ -30,7 +30,7 @@ unjoin:
       required: true
       selector:
         entity:
-          integration: linkplay
+          integration: linkplay2
 
 snapshot:
   name: Snapshot
@@ -43,7 +43,7 @@ snapshot:
       required: true
       selector:
         entity:
-          integration: linkplay
+          integration: linkplay2
     switchinput:
       name: Switch Input / Volume Only
       description: To be used with Spotify Integration. Switch player to stream input along with snapshotting, before playing TTS. Applies for players with multiple inputs like Line-in, Optical, etc. Optional - if not specified, defaults to True.
@@ -64,7 +64,7 @@ restore:
       required: true
       selector:
         entity:
-          integration: linkplay
+          integration: linkplay2
 
 preset:
   name: Preset
@@ -77,7 +77,7 @@ preset:
       required: true
       selector:
         entity:
-          integration: linkplay
+          integration: linkplay2
     preset:
       name: Preset
       description: Content preset number on the device
@@ -100,7 +100,7 @@ command:
       required: true
       selector:
         entity:
-          integration: linkplay
+          integration: linkplay2
     command:
       name: Command
       description: 'To set the names for WriteDeviceNameToUnit and SetApSSIDName please switch to YAML mode and enter the name there.'
@@ -139,7 +139,7 @@ play_track:
       required: true
       selector:
         entity:
-          integration: linkplay
+          integration: linkplay2
     track:
       name: Track
       description: (Part of) The name of the track from the list
