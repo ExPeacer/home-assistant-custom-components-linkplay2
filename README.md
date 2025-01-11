@@ -1,17 +1,13 @@
 # Linkplay-based speakers and sound devices
 
-**NOTE: The `linkplay` custom component for Home Assistant is deprecated, and unsupported! Starting with Home Assistant 2024.08 release, Linkplay chipset based media players are officially supported without the need of any custom component.**
+**NOTE:**
 
-To switch to the official LinkPlay integration starting from **2024.08**, follow these steps:
-* Remove the current `linkplay` configuration from your configuration.yaml.
-* Restart Home-Assistant.
-* Delete the custom component through HACS or manually by deleting the `custom_components/linkplay` folder.
-* Restart Home-Assistant again. Your players will be automatically discovered, a notification popup will inform you on this.
-
-For any bugs, feature requests, or PRs, please use the official Home Assistant channels.
+Sadly, the original developer abandoned this project, since the Home Assistant got an official Linkplay integration. Unfortunately, that integration does not support a lots of features from this component, so I decided to try revive this component.
+I am not a developer, but I will try to maintain this component as much as I can.
 
 ---
-**For Home Assistant versions before 2024.08:**
+
+**Original README:**
 
 This component allows you to integrate control of audio devices based on Linkplay A31 chipset into your [Home Assistant](http://www.home-assistant.io) smart home system. Originally developed by nicjo814, maintained by limych. This version rewritten by nagyrobi. Read more about Linkplay at the bottom of this file.
 
@@ -19,12 +15,10 @@ Fully compatible with [Mini Media Player card for Lovelace UI](https://github.co
 
 ## Installation
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg?style=for-the-badge)](https://github.com/hacs/integration)
-* Install using HACS, or manually: copy all files in `custom_components/linkplay` to your `<config directory>/custom_components/linkplay/` directory.
+* Install using HACS, or manually: copy all files in `custom_components/linkplay2` to your `<config directory>/custom_components/linkplay2/` directory.
 * Restart Home-Assistant.
 * Add the configuration to your configuration.yaml.
 * Restart Home-Assistant again.
-
-[Support forum](https://community.home-assistant.io/t/linkplay-integration/33878/133)
 
 ### Configuration
 
@@ -35,7 +29,7 @@ To add Linkplay units to your installation, add the following to your `configura
 ```yaml
 # Example configuration.yaml entry
 media_player:
-    - platform: linkplay
+    - platform: linkplay2
       host: 192.168.1.11
       protocol: https
       name: Sound Room1
@@ -51,7 +45,7 @@ media_player:
           'http://94.199.183.186:8000/jazzy-soul.mp3': 'Jazzy Soul',
         }
 
-    - platform: linkplay
+    - platform: linkplay2
       host: 192.168.1.12
       name: Sound Room2
       uuid: 'FF31F09E82A6BBC1A2CB6D80'
@@ -103,7 +97,7 @@ If you don't want a source selector to be available at all, set option to empty:
 _Note:_ **Don't** use HTTP**S** streams. Linkplay chipsets seem to have limited supporrt for HTTPS. Besides, using HTTPS is useless in practice for a public webradio stream, it's a waste of computig resources for this kind of usage both on server and player side.
 
 **common_sources:**  
-  *(list)* *(Optional)* Another list with sources which should appear on the device. Useful if you have multiple devices on the network and you'd like to maintain a common list of http-based internet radio stream sources for all of them in a single file with `!include linkplay-radio-sources.yaml`. The included file should be in the same place as the main config file containing `linkplay` platform.   
+  *(list)* *(Optional)* Another list with sources which should appear on the device. Useful if you have multiple devices on the network and you'd like to maintain a common list of http-based internet radio stream sources for all of them in a single file with `!include linkplay-radio-sources.yaml`. The included file should be in the same place as the main config file containing `linkplay2` platform.   
   For example:
 ```yaml
 {
@@ -135,14 +129,14 @@ This integration will autodetect the firmware version running on the player and 
 
 To create a multiroom group, connect `media_player.sound_room2` (slave) to `media_player.sound_room1` (master):
 ```yaml
-    - service: linkplay.join
+    - service: linkplay2.join
       data:
         entity_id: media_player.sound_room2
         master: media_player.sound_room1
 ```
 To exit from the multiroom group, use the entity ids of the players that need to be unjoined. If this is the entity of a master, all slaves will be disconnected:
 ```yaml
-    - service: linkplay.unjoin
+    - service: linkplay2.unjoin
       data:
         entity_id: media_player.sound_room1
 ```
@@ -156,7 +150,7 @@ It's also possible to use Home Assistant's [standard multiroom](https://www.home
 
 Linkplay devices allow to save, using the control app on the phone/tablet, music presets (for example Spotify playlists) to be recalled for later listening. Recalling a preset from Home Assistant:
 ```yaml
-    - service: linkplay.preset
+    - service: linkplay2.preset
       data:
         entity_id: media_player.sound_room1
         preset: 1
@@ -167,7 +161,7 @@ Preset count vary from device type to type, usually the phone app shows how many
 
 Linkplay devices support some commands through the API, this is a wrapper to be able to use these in Home Assistant:
 ```yaml
-    - service: linkplay.command
+    - service: linkplay2.command
       data:
         entity_id: media_player.sound_room1
         command: TimeSync
@@ -192,7 +186,7 @@ See below on how to call a TTS announcement service.
 
 To prepare the player to play TTS and save the current state of it for restoring afterwards, current playback will stop:
 ```yaml
-    - service: linkplay.snapshot
+    - service: linkplay2.snapshot
       data:
         entity_id: media_player.sound_room1
         switchinput: true
@@ -201,7 +195,7 @@ Note the `switchinput` parameter: if the currently playing source is Spotify and
 
 To restore the player state:
 ```yaml
-    - service: linkplay.restore
+    - service: linkplay2.restore
       data:
         entity_id: media_player.sound_room1
 ```
@@ -359,4 +353,3 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-[forum-support]: https://community.home-assistant.io/t/linkplay-integration/33878
